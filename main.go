@@ -20,7 +20,6 @@ func main() {
 		fmt.Println("Getting values from env..")
 	}
 
-
   configDB := config.ConfigDB{
 		Host:     os.Getenv("DB_HOST"),
 		Port:     os.Getenv("DB_PORT"),
@@ -30,9 +29,7 @@ func main() {
 		SSLMode:  os.Getenv("DB_SSLMODE"),
 	}
 
-	fmt.Println(configDB)
-
-	server.Initialize()
+	server.Initialize(&configDB)
 	server.Run(os.Getenv("IP_HOST"))
 
 }
