@@ -1,10 +1,10 @@
-package config
+package controllers
 
 import (
-  "goproj/controllers"
+  "goproj/config"
 )
 
-func (server *Server) InitializeRoutes() {
+func InitializeRoutes((server *Server) ) {
   items := server.Router.Group("/items")
   {
     items.GET("/", controllers.GetAllItems)

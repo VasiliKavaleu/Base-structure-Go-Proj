@@ -34,9 +34,11 @@ func (server Server) Run(addr string) {
 }
 
 func (server *Server) Initialize(cfg *ConfigDB) {
+  server.ConnectDB(cfg)
+
   server.Router = gin.Default()
   server.InitializeRoutes()
-  server.ConnectDB(cfg)
+
 }
 
 func (server *Server) ConnectDB(cfg *ConfigDB) {
