@@ -12,3 +12,15 @@ services:
             POSTGRES_USER: postgres
             POSTGRES_PASSWORD: postgres
             POSTGRES_DB: goproj
+
+    pgadmin:
+        image: dpage/pgadmin4
+        container_name: pgadmin
+        environment:
+          PGADMIN_DEFAULT_EMAIL: user@example.com
+          PGADMIN_DEFAULT_PASSWORD: password
+        depends_on:
+          - db
+        ports:
+          - "5050:80"
+        restart: unless-stopped

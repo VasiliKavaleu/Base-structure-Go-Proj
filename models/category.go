@@ -17,7 +17,7 @@ type Category struct {
   UpdatedAt   time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"updated_at"`
 }
 
-func (category *Category) FindAllCetegories(db *gorm.DB)(*[]Category, error){
+func (c *Category) FindAllCategories(db *gorm.DB)(*[]Category, error){
   var err error
   categories := []Category{}
   err = db.Debug().Model(&Category{}).Limit(20).Order("created_at desc").Find(&categories).Error

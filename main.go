@@ -2,6 +2,8 @@ package main
 
 import (
 		"goproj/config"
+		"goproj/routes"
+
 		"github.com/joho/godotenv"
 		"log"
 		"fmt"
@@ -29,7 +31,8 @@ func main() {
 		SSLMode:  os.Getenv("DB_SSLMODE"),
 	}
 
-	server.Initialize(&configDB)
-	server.Run(os.Getenv("IP_HOST"))
+	routes.Setup()
+	server.ConnectDB(&configDB)
+	server.Run(os.Getenv("IP_HOST"), routes.Router)
 
 }

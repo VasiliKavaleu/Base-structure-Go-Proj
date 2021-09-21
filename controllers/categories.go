@@ -3,14 +3,16 @@ package controllers
 import (
   "github.com/gin-gonic/gin"
   "goproj/models"
-  "goproj/config/Server"
+  "goproj/config"
   "net/http"
 )
 
 
 func GetCategories(c *gin.Context) {
+  category := models.Category{}
 
-  categories, err := models.Category.FindAllCetegories(config.Server.DB)
+  categories, err := category.FindAllCategories(config.DB)
+
   if err != nil {
     c.JSON(http.StatusNotFound, gin.H{
       "status": http.StatusNotFound,
@@ -19,7 +21,7 @@ func GetCategories(c *gin.Context) {
 
   }
   c.JSON(http.StatusOK, gin.H{
-    "status":   http.StatusOK,
-    "response": categories,
+    "categories": categories,
   })
+
 }
